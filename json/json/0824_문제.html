@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+  /*
+  name : 영화제목
+  rank : 관객 수 순위
+  createdAt : 개봉 날짜
+  salesRevenue : 판매액
+  attendance : 관객수 */
+  const movies = [
+    {
+      name: '명량',
+      rank: 1,
+      createdAt: '2014-07-30',
+      salesRevenue: 135748398910,
+      attendance: 17613682,
+    },
+    {
+      name: '극한직업',
+      rank: 2,
+      createdAt: '2019-01-23',
+      salesRevenue: 139647979516,
+      attendance: 16264944,
+    },
+    {
+      name: '신과함께-죄와 벌',
+      rank: 3,
+      createdAt: '2014-07-30',
+      salesRevenue: 135748398910,
+      attendance: 17613682,
+    },
+    {
+      name: '국제시장',
+      rank: 4,
+      createdAt: '2014-07-30',
+      salesRevenue: 110913469630,
+      attendance: 14257115,
+    },
+    {
+      name: '어벤져스: 엔드게임',
+      rank: 5,
+      createdAt: '2019-04-24',
+      salesRevenue: 122182694160,
+      attendance: 13934592,
+    },
+  ];
+  /*
+  문제 1번.
+    영화 이름, 개봉날짜, 순위만 출력하시오.
+  문제 2번.
+    영화 명량과 어벤져스의 판매액 합산을 구하시오.
+  문제 3번.
+    관객수가 15000000넘은 영화의 이름과 개봉날짜 판매액을 출력하시오.
+  문제 4번.
+    1위 영화부터 5위 영화 판매액 평균을 구하시오.
+  문제 5번.(난이도 상)
+    개봉날짜가 가장 최근인 영화의 이름과 개봉일 순위를 구하시오.
+  */
+  // 문제 1. 답
+  for(var i=0; i<movies.length; i++) {
+    console.log('영화이름 : '+movies[i].name);
+    console.log('개봉날짜 : '+movies[i].createdAt);
+    console.log('영화순위 : '+movies[i].rank+'위 ----------------');
+  }
+  console.log('-------------------------------');
+  // 문제 2. 답
+  console.log('명량 판매액 : '+movies[0].salesRevenue);
+  console.log('어벤져스 판매액 : '+movies[4].salesRevenue);
+  var sum =movies[0].salesRevenue+movies[4].salesRevenue
+  console.log('두 영화의 판매액 합 : '+sum);
+  console.log('-------------------------------');
+  // 문제 3. 답
+  console.log('관객수 1500만이 넘은 영화');
+  for(var i=0; i<movies.length; i++) {
+    if(15000000 <= movies[i].attendance) {
+      console.log('영화이름 : '+movies[i].name);
+      console.log('개봉날짜 : '+movies[i].createdAt);
+    }
+  }
+  console.log('-------------------------------');
+  // 문제 4. 답
+  var sum=0;
+  var result=0;
+  for(var i=0; i<movies.length; i++) {
+    sum = sum+movies[i].salesRevenue;
+  }
+  result = sum/movies.length;
+  console.log('1위~5위까지 판매액 총합 : '+sum+'원');
+  console.log('1위~5위까지 판매액 평균 : '+result+'원');
+  console.log('-------------------------------');
+  // 문제 5. 답
+
+  var dates=[];
+  dates.push(new Date(movies[0].createdAt))
+  dates.push(new Date(movies[1].createdAt))
+  dates.push(new Date(movies[2].createdAt))
+  dates.push(new Date(movies[3].createdAt))
+  dates.push(new Date(movies[4].createdAt))
+  var maxDate=new Date(Math.max.apply(null,dates));
+  var minDate=new Date(Math.min.apply(null,dates));
+
+  console.log('개봉날짜가 가장 최근인 영화');
+  console.log('영화이름 : '+maxDate);
+  if(maxDate == movies.createdAt) {
+    console.log('영화이름 : '+movies.name);
+    console.log('개봉날짜 : '+movies.createdAt);
+    console.log('영화순위 : '+movies.rank+'위 ----------------');
+  }
+  // 문제 5. 내림차순을 이용한 방법 
+  console.log(movies.sort(date_descending));
+  function date_descending(a, b) {
+    var dateA = new Date(a['createdAt']).getTime();
+    var dateB = new Date(b['createdAt']).getTime();
+    return dateA < dateB ? 1 : -1;
+  };
+  console.log('개봉날짜가 가장 최근인 영화');
+  console.log('영화이름 : '+movies[0].name);
+  console.log('개봉날짜 : '+movies[0].createdAt);
+  console.log('영화순위 : '+movies[0].rank+'위 ----------------');
+
+  // 오름차순 내림차순 사용
+  // var data = [
+  //   { '날짜': "2012-11-14", '학년': 3, '점수': 200, },
+  //   { '날짜': "2013-11-14", '학년': 1, '점수': 300, },
+  //   { '날짜': "2017-11-14", '학년': 2, '점수': 90, },
+  //   { '날짜': "2018-11-14", '학년': 2, '점수': 90, },
+  //   { '날짜': "2019-11-14", '학년': 2, '점수': 90, },
+  //   { '날짜': "2020-11-14", '학년': 2, '점수': 90, },
+  //   { '날짜': "2021-11-31", '학년': 3, '점수': 200, },
+  //   { '날짜': "2023-11-01", '학년': 2, '점수': 190, },
+  //   { '날짜': "2002-11-14", '학년': 2, '점수': 90, },
+  //   { '날짜': "2010-11-14", '학년': 2, '점수': 190, },
+  //   { '날짜': "2008-11-14", '학년': 2, '점수': 90, },
+  //   { '날짜': "2009-11-14", '학년': 1, '점수': 100, }
+  // ];
+  // console.log(data.sort(date_ascending)); // 오름차순
+  // function date_ascending(a, b) {
+  //   var dateA = new Date(a['날짜']).getTime();
+  //   var dateB = new Date(b['날짜']).getTime();
+  //   return dateA > dateB ? 1 : -1;
+  // };
+  // console.log(data.sort(date_descending)) // 내림차순
+  // function date_descending(a, b) {
+  //   var dateA = new Date(a['날짜']).getTime();
+  //   var dateB = new Date(b['날짜']).getTime();
+  //   return dateA < dateB ? 1 : -1;
+  // };
+  
+
+
+
+
+</script>
+</html>
